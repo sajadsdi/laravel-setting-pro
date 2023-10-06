@@ -1,0 +1,21 @@
+{
+    "name": "sajadsdi/lara-setting",
+    "description": "Setting management for laravel",
+    "type": "laravel-package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sajadsdi\\LaraSetting\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "SajaD SaeeDi",
+            "email": "thunder11like@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "sajadsdi/array-dot-notation": "^1.0"
+    }
+}
