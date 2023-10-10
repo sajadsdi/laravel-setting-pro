@@ -2,19 +2,21 @@
 
 namespace Sajadsdi\LaraSetting\Services;
 
-use Sajadsdi\LaraSetting\Contracts\DriverInterface;
+use Sajadsdi\ArrayDotNotation\DotNotation;
+use Sajadsdi\LaraSetting\Contracts\CacheDriverInterface;
+use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
 
 class SettingStore
 {
     private array           $drivers = [];
     private array           $config  = [];
-    private DriverInterface $cache;
+    private CacheDriverInterface $cache;
 
     public function __construct(array $config = [])
     {
         $this->config = $config ? $config : config('lara-setting');
         if ($this->cacheEnabled()) {
-            $this->cache = new $this->config['cache']['class'];
+            $this->setCache();
         }
     }
 
@@ -45,9 +47,6 @@ class SettingStore
     public function set(string $name, mixed $data): void
     {
         $this->getDriver($this->config['store']['default'])->set($name, $data);
-        if ($this->cacheEnabled()) {
-            $this->cache->set($name, $data);
-        }
     }
 
     /**
@@ -60,23 +59,39 @@ class SettingStore
 
     /**
      * @param string $name
-     * @return DriverInterface
+     * @return StoreDriverInterface
      */
-    private function getDriver(string $name): DriverInterface
+    private function getDriver(string $name): StoreDriverInterface
     {
         if (!isset($this->drivers[$name])) {
-            $this->setDriver($name,new $this->config['store']['drivers'][$name]['class']);
+            $this->setDriver($name,new $this->config['store']['drivers'][$name]['class']($this->config['store']['drivers'][$name]));
         }
         return $this->drivers[$name];
     }
 
     /**
      * @param string $name
-     * @param DriverInterface $class
+     * @param StoreDriverInterface $class
      * @return void
      */
-    private function setDriver(string $name, DriverInterface $class)
+    private function setDriver(string $name, StoreDriverInterface $class)
     {
         $this->drivers[$name] = $class;
+    }
+
+    /**
+     * @return void
+     */
+    private function setCache(): void
+    {
+        $this->cache = new $this->config['cache']['class']($this->config['cache']);
+    }
+
+    /**
+     * @return CacheDriverInterface
+     */
+    public function cache(): CacheDriverInterface
+    {
+        return $this->cache;
     }
 }

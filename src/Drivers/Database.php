@@ -2,11 +2,17 @@
 
 namespace Sajadsdi\LaraSetting\Drivers;
 
-use Sajadsdi\LaraSetting\Contracts\DriverInterface;
+use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
 
-class Database implements DriverInterface
+class Database implements StoreDriverInterface
 {
 
+    /**
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+    }
 
     /**
      * @param string $key

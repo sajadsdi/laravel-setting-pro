@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'store' => [
+    'store'          => [
         'default' => 'file',
         'drivers' => [
             'file'     => [
@@ -14,8 +14,10 @@ return [
             ],
         ],
     ],
-    'cache' => [
+    'cache'          => [
         'enabled' => false,
-        'class' => \Sajadsdi\LaraSetting\Drivers\Cache::class
-    ]
+        'class'   => \Sajadsdi\LaraSetting\Cache\Cache::class
+    ],
+    'background_job' => false,
+    'trigger_event' => false
 ];

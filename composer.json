@@ -1,9 +1,12 @@
 {
     "name": "sajadsdi/lara-setting",
-    "description": "Setting management for laravel",
+    "description": "Setting Management For Laravel",
     "type": "laravel-package",
     "license": "MIT",
     "autoload": {
+        "files": [
+            "src/Support/helpers.php"
+        ],
         "psr-4": {
             "Sajadsdi\\LaraSetting\\": "src/"
         }

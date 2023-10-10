@@ -2,8 +2,11 @@
 
 namespace Sajadsdi\LaraSetting\Contracts;
 
-interface DriverInterface
+use Sajadsdi\ArrayDotNotation\DotNotation;
+
+interface StoreDriverInterface
 {
+    public function __construct(array $config);
     public function get(string $key): mixed;
     public function set(string $key,mixed $data): void;
 }
