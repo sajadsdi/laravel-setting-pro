@@ -27,14 +27,5 @@
                 "Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider"
             ]
         }
-    },
-    "scripts": {
-        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
-        "install": [
-            "@php ./vendor/bin/testbench setting:install --force"
-        ],
-        "start": [
-            "@composer run install"
-        ]
     }
 }
