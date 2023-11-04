@@ -21,14 +21,17 @@
         "php": "^8.0",
         "sajadsdi/array-dot-notation": "^1.0"
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider"
+            ]
+        }
+    },
     "scripts": {
-        "post-install-cmd": [
+        "post-autoload-dump": [
             "@php artisan vendor:publish --tag=lara-setting",
             "@php artisan setting:install --with=table"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=lara-setting",
-            "@php artisan setting:install"
         ]
     }
 }
