@@ -88,7 +88,7 @@ class InstallCommand extends Command
 
         file_put_contents(config_path('app.php'), str_replace(
             "* Package Service Providers...\n         */",
-            "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class,\n",
+            "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class,",
             $appConfig
         ));
     }
