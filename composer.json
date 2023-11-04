@@ -29,9 +29,6 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": [
-            "@php artisan vendor:publish --tag=lara-setting",
-            "@php artisan setting:install --with=table"
-        ]
+        "post-autoload-dump": "@php ./vendor/bin/testbench setting:install"
     }
 }
