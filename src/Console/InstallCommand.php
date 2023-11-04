@@ -12,8 +12,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'setting:install
-                {--with= : You can set (table) to install migrations}';
+    protected $signature = 'setting:install';
 
     /**
      * The console command description.
@@ -30,25 +29,28 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->info('Installing Lara Setting ...');
+        $this->publish();
+        $this->installMigrations();
         $config = config('lara-setting');
-        if ($this->option('with')) {
-            $services = explode(',', $this->option('with'));
-            foreach ($services as $service){
-                if($service == 'table'){
-                    $this->installMigrations();
-                }
-            }
-        }
         $this->installSettingDirectory($config);
         $this->installTestSetting($config);
         $this->info('Installation completed !');
         $this->testSetting();
         return null;
     }
+    
+    private function publish()
+    {
+        $this->comment('Publishing configure ...');
+        $this->call('vendor:publish',['--tag' => "lara-setting-configure"]);
+        
+        $this->comment('Publishing migration ...');
+        $this->call('vendor:publish',['--tag' => "lara-setting-migration"]);
+    }
 
     private function installSettingDirectory($config)
     {
-        $this->info('Creating setting directory ...');
+        $this->comment('Creating setting directory ...');
 
         if(is_dir($config['store']['drivers']['file']['path'])){
             $this->warn('setting directory is exists ............ SKIPPED');
@@ -60,7 +62,7 @@ class InstallCommand extends Command
 
     private function installTestSetting($config)
     {
-        $this->info('Creating test setting ...');
+        $this->comment('Creating test setting ...');
         if(file_exists($config['store']['drivers']['file']['path'].'test.php')){
             $this->warn('test.php is exists in setting directory ............ SKIPPED');
         }else {
@@ -73,13 +75,13 @@ class InstallCommand extends Command
 
     private function installMigrations()
     {
-        $this->info('Migrating ...');
+        $this->comment('Migrating ...');
         $this->call('migrate',['--path' => "database/migrations/2023_11_03_030451_create_setting_table.php"]);
     }
 
     private function testSetting()
     {
-        $this->info("testing ...");
+        $this->comment("testing ...");
         $this->alert(setting('test','welcome') . " Ver:" . setting('test','version'));
     }
 }
