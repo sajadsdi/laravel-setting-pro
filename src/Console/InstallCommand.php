@@ -83,6 +83,7 @@ class InstallCommand extends Command
         $appConfig = file_get_contents(config_path('app.php'));
 
         if (Str::contains($appConfig, 'Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class')) {
+            $this->warn('Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class provider is exists in app config ............ SKIPPED');
             return;
         }
 
@@ -91,5 +92,6 @@ class InstallCommand extends Command
             "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class,",
             $appConfig
         ));
+        $this->info('Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class provider added to app config ..... DONE')
     }
 }
