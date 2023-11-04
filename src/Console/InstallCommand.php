@@ -3,6 +3,7 @@
 namespace Sajadsdi\LaraSetting\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class InstallCommand extends Command
 {
@@ -30,10 +31,11 @@ class InstallCommand extends Command
     {
         $this->info('Installing Lara Setting ...');
         $this->installMigrations();
+        $this->installProvider();
         $config = config('lara-setting');
         $this->installSettingDirectory($config);
-        $this->installTestSetting($config);
         $this->info('Installation completed !');
+        $this->installTestSetting($config);
         $this->testSetting();
         return null;
     }
@@ -73,5 +75,21 @@ class InstallCommand extends Command
     {
         $this->comment("testing ...");
         $this->alert(setting('test','welcome') . " Ver:" . setting('test','version'));
+    }
+
+    private function installProvider()
+    {
+        $this->comment('Adding Provider in app config ...');
+        $appConfig = file_get_contents(config_path('app.php'));
+
+        if (Str::contains($appConfig, 'Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class')) {
+            return;
+        }
+
+        file_put_contents(config_path('app.php'), str_replace(
+            "* Package Service Providers...\n         */",
+            "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class,\n",
+            $appConfig
+        ));
     }
 }
