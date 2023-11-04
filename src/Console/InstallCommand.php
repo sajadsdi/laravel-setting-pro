@@ -92,6 +92,6 @@ class InstallCommand extends Command
             "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class,",
             $appConfig
         ));
-        $this->info('Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class provider added to app config ..... DONE')
+        $this->info('Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class provider added to app config ..... DONE');
     }
 }
