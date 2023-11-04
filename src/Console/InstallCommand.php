@@ -29,7 +29,6 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->info('Installing Lara Setting ...');
-        $this->publish();
         $this->installMigrations();
         $config = config('lara-setting');
         $this->installSettingDirectory($config);
@@ -37,15 +36,6 @@ class InstallCommand extends Command
         $this->info('Installation completed !');
         $this->testSetting();
         return null;
-    }
-    
-    private function publish()
-    {
-        $this->comment('Publishing configure ...');
-        $this->call('vendor:publish',['--tag' => "lara-setting-configure"]);
-        
-        $this->comment('Publishing migration ...');
-        $this->call('vendor:publish',['--tag' => "lara-setting-migration"]);
     }
 
     private function installSettingDirectory($config)

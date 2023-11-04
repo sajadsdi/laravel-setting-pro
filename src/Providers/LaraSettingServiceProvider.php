@@ -4,6 +4,7 @@ namespace Sajadsdi\LaraSetting\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Sajadsdi\LaraSetting\Console\InstallCommand;
+use Sajadsdi\LaraSetting\Console\PublishCommand;
 use Sajadsdi\LaraSetting\LaraSetting;
 use Sajadsdi\LaraSetting\Services\SettingStore;
 use Sajadsdi\LaraSetting\Support\Setting;
@@ -47,6 +48,7 @@ class LaraSettingServiceProvider extends ServiceProvider
     private function registerCommands()
     {
         $this->commands([
+            PublishCommand::class,
             InstallCommand::class
         ]);
     }
