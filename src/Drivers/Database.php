@@ -2,16 +2,19 @@
 
 namespace Sajadsdi\LaraSetting\Drivers;
 
+use Sajadsdi\LaraSetting\Contracts\DatabaseModelInterface;
 use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
 
 class Database implements StoreDriverInterface
 {
+    private DatabaseModelInterface $model;
 
     /**
      * @param array $config
      */
     public function __construct(array $config)
     {
+        $this->model  = new $config['models'][$config['connection']];
     }
 
     /**
@@ -20,7 +23,7 @@ class Database implements StoreDriverInterface
      */
     public function get(string $key): mixed
     {
-        // TODO: Implement get() method.
+        return $this->model->getSetting($key);
     }
 
     /**
@@ -30,6 +33,6 @@ class Database implements StoreDriverInterface
      */
     public function set(string $key, mixed $data): void
     {
-        // TODO: Implement set() method.
+        $this->model->setSetting($key, $data);
     }
 }

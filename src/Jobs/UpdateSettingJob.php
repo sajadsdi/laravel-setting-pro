@@ -18,7 +18,7 @@ class UpdateSettingJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public string $settingName, public array $keyValue, public bool $cacheEnabled,public bool $triggerEvent, string $queue)
+    public function __construct(public string $settingName, public array $keyValue, public bool $cacheEnabled, public bool $triggerEvent, string $queue)
     {
         $this->onQueue($queue);
     }
@@ -28,13 +28,12 @@ class UpdateSettingJob implements ShouldQueue
      */
     public function handle(SettingStore $store): void
     {
+        $oldData = $store->getSetting($this->settingName) ?? [];
+        $store->set($this->settingName, $this->setByDotMulti($oldData, $this->keyValue));
+
         if ($this->cacheEnabled) {
             $store->cache()->clear($this->settingName);
         }
-
-        $oldData = $store->get($this->settingName) ?? [];
-
-        $store->set($this->settingName, $this->setByDotMulti($oldData, $this->keyValue));
 
         if ($this->triggerEvent) {
             UpdateSettingEvent::dispatch($this->settingName, $this->keyValue);

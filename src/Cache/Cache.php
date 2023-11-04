@@ -3,15 +3,18 @@
 namespace Sajadsdi\LaraSetting\Cache;
 
 use Sajadsdi\LaraSetting\Contracts\CacheDriverInterface;
+use Illuminate\Support\Facades\Cache as laravelCache;
 
 class Cache implements CacheDriverInterface
 {
+    private array $config;
 
     /**
      * @param array $config
      */
     public function __construct(array $config)
     {
+        $this->config = $config;
     }
 
     /**
@@ -20,7 +23,7 @@ class Cache implements CacheDriverInterface
      */
     public function get($key): mixed
     {
-        // TODO: Implement load() method.
+        return laravelCache::get($this->config['prefix'] . '.' . $key);
     }
 
     /**
@@ -30,7 +33,7 @@ class Cache implements CacheDriverInterface
      */
     public function set(string $key, mixed $data): void
     {
-        // TODO: Implement set() method.
+        laravelCache::put($this->config['prefix'] . '.' . $key, $data);
     }
 
     /**
@@ -39,7 +42,7 @@ class Cache implements CacheDriverInterface
      */
     public function clear($key): void
     {
-        // TODO: Implement clear() method.
+        laravelCache::forget($this->config['prefix'] . '.' . $key);
     }
 
     /**
@@ -47,6 +50,6 @@ class Cache implements CacheDriverInterface
      */
     public function clearAll(): void
     {
-        // TODO: Implement clearAll() method.
+        laravelCache::flush();
     }
 }

@@ -20,7 +20,7 @@ class LaraSetting
 
     public function __construct(array $config = [])
     {
-        $this->config = $config ? $config : config('lara-setting');
+        $this->config = $config;
         $this->store  = app()->make(SettingStore::class);
     }
 

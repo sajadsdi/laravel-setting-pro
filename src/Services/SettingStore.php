@@ -8,13 +8,13 @@ use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
 
 class SettingStore
 {
-    private array           $drivers = [];
-    private array           $config  = [];
+    private array                $drivers = [];
+    private array                $config  = [];
     private CacheDriverInterface $cache;
 
     public function __construct(array $config = [])
     {
-        $this->config = $config ? $config : config('lara-setting');
+        $this->config = $config;
         if ($this->cacheEnabled()) {
             $this->setCache();
         }
@@ -31,9 +31,27 @@ class SettingStore
             $data = $this->cache->get($name);
         }
         if ($data === null) {
-            $data = $this->getDriver($this->config['store']['default'])->get($name);
+            $data = $this->getSetting($name);
             if ($this->cacheEnabled() && $data !== null) {
                 $this->cache->set($name, $data);
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getSetting(string $name): mixed
+    {
+        $data = $this->getDriver($this->config['store']['default'])->get($name);
+        if ($data === null) {
+            if($this->config['store']['import_from']) {
+                $data = $this->getDriver($this->config['store']['import_from'])->get($name);
+                if ($data) {
+                    $this->getDriver($this->config['store']['default'])->set($name, $data);
+                }
             }
         }
         return $data;
@@ -64,7 +82,7 @@ class SettingStore
     private function getDriver(string $name): StoreDriverInterface
     {
         if (!isset($this->drivers[$name])) {
-            $this->setDriver($name,new $this->config['store']['drivers'][$name]['class']($this->config['store']['drivers'][$name]));
+            $this->setDriver($name, new $this->config['store']['drivers'][$name]['class']($this->config['store']['drivers'][$name]));
         }
         return $this->drivers[$name];
     }

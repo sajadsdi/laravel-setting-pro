@@ -2,8 +2,6 @@
 
 namespace Sajadsdi\LaraSetting\Contracts;
 
-use Sajadsdi\ArrayDotNotation\DotNotation;
-
 interface CacheDriverInterface
 {
     public function __construct(array $config);
