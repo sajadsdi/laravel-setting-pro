@@ -1,6 +1,6 @@
 {
     "name": "sajadsdi/lara-setting",
-    "description": "Setting Management For Laravel",
+    "description": "Easy setting management for Laravel framework",
     "type": "laravel-package",
     "license": "MIT",
     "autoload": {
