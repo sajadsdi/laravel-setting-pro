@@ -33,14 +33,14 @@ class LaraSettingServiceProvider extends ServiceProvider
     private function configurePublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__ . '/../../config/lara-setting.php' => config_path('lara-setting.php')], 'lara-setting');
+            $this->publishes([__DIR__ . '/../../config/lara-setting.php' => config_path('lara-setting.php')], 'lara-setting-configure');
         }
     }
 
     private function migrationPublishing()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([__DIR__ . '/../../database/migrations/2023_11_03_030451_create_setting_table.php' => database_path('migrations/2023_11_03_030451_create_setting_table.php')], 'lara-setting');
+            $this->publishes([__DIR__ . '/../../database/migrations/2023_11_03_030451_create_setting_table.php' => database_path('migrations/2023_11_03_030451_create_setting_table.php')], 'lara-setting-migration');
         }
     }
 
