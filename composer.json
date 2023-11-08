@@ -1,5 +1,5 @@
 {
-    "name": "sajadsdi/lara-setting",
+    "name": "sajadsdi/laravel-setting-pro",
     "description": "Easy setting management for Laravel framework",
     "type": "laravel-package",
     "license": "MIT",
@@ -8,7 +8,7 @@
             "src/Support/helpers.php"
         ],
         "psr-4": {
-            "Sajadsdi\\LaraSetting\\": "src/"
+            "Sajadsdi\\LaravelSettingPro\\": "src/"
         }
     },
     "authors": [
