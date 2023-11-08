@@ -1,6 +1,6 @@
 <?php
 
-use Sajadsdi\LaraSetting\Support\Setting;
+use Sajadsdi\LaravelSettingPro\Support\Setting;
 
 if (!function_exists('setting')) {
     /**

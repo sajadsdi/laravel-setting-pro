@@ -1,6 +1,6 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Contracts;
+namespace Sajadsdi\LaravelSettingPro\Contracts;
 
 interface StoreDriverInterface
 {

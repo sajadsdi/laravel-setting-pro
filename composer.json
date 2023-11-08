@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider"
+                "Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider"
             ]
         }
     }

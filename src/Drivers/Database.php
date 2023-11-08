@@ -1,9 +1,9 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Drivers;
+namespace Sajadsdi\LaravelSettingPro\Drivers;
 
-use Sajadsdi\LaraSetting\Contracts\DatabaseModelInterface;
-use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\StoreDriverInterface;
 
 class Database implements StoreDriverInterface
 {

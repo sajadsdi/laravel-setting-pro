@@ -1,8 +1,8 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Drivers;
+namespace Sajadsdi\LaravelSettingPro\Drivers;
 
-use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\StoreDriverInterface;
 
 class File implements StoreDriverInterface
 {

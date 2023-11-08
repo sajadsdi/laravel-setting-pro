@@ -1,6 +1,6 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Events;
+namespace Sajadsdi\LaravelSettingPro\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 

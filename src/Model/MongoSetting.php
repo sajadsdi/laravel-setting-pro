@@ -1,10 +1,10 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Model;
+namespace Sajadsdi\LaravelSettingPro\Model;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
-use Sajadsdi\LaraSetting\Contracts\DatabaseModelInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 
 class MongoSetting extends Model implements DatabaseModelInterface
 {

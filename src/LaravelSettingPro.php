@@ -1,16 +1,16 @@
 <?php
 
-namespace Sajadsdi\LaraSetting;
+namespace Sajadsdi\LaravelSettingPro;
 
 use Sajadsdi\ArrayDotNotation\Exceptions\ArrayKeyNotFoundException;
 use Sajadsdi\ArrayDotNotation\Traits\MultiDotNotationTrait;
-use Sajadsdi\LaraSetting\Exceptions\SettingKeyNotFoundException;
-use Sajadsdi\LaraSetting\Exceptions\SettingNotFoundException;
-use Sajadsdi\LaraSetting\Exceptions\SettingNotSelectedException;
-use Sajadsdi\LaraSetting\Jobs\UpdateSettingJob;
-use Sajadsdi\LaraSetting\Services\SettingStore;
+use Sajadsdi\LaravelSettingPro\Exceptions\SettingKeyNotFoundException;
+use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotFoundException;
+use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotSelectedException;
+use Sajadsdi\LaravelSettingPro\Jobs\UpdateSettingJob;
+use Sajadsdi\LaravelSettingPro\Services\SettingStore;
 
-class LaraSetting
+class LaravelSettingPro
 {
     private array        $settings = [];
     private array        $sets     = [];

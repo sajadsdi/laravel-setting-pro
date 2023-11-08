@@ -1,19 +1,19 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Support;
+namespace Sajadsdi\LaravelSettingPro\Support;
 
-use Sajadsdi\LaraSetting\Exceptions\SettingKeyNotFoundException;
-use Sajadsdi\LaraSetting\Exceptions\SettingNotFoundException;
-use Sajadsdi\LaraSetting\Exceptions\SettingNotSelectedException;
-use Sajadsdi\LaraSetting\LaraSetting;
+use Sajadsdi\LaravelSettingPro\Exceptions\SettingKeyNotFoundException;
+use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotFoundException;
+use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotSelectedException;
+use Sajadsdi\LaravelSettingPro\LaravelSettingPro;
 
 class Setting
 {
     private static self $obj;
     private string      $select = '';
-    private LaraSetting $setting;
+    private LaravelSettingPro $setting;
 
-    public function __construct(LaraSetting $setting)
+    public function __construct(LaravelSettingPro $setting)
     {
         $this->setting = $setting;
         self::$obj     = $this;

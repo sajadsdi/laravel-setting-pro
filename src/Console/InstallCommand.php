@@ -1,6 +1,6 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Console;
+namespace Sajadsdi\LaravelSettingPro\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -20,7 +20,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install Lara Setting!';
+    protected $description = 'Install Laravel Setting Pro!';
 
     /**
      * Execute the console command.
@@ -29,10 +29,10 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        $this->info('Installing Lara Setting ...');
+        $this->info('Installing Laravel Setting Pro ...');
         $this->installMigrations();
         $this->installProvider();
-        $config = config('lara-setting');
+        $config = config('laravel-setting');
         $this->installSettingDirectory($config);
         $this->info('Installation completed !');
         $this->installTestSetting($config);
@@ -82,16 +82,16 @@ class InstallCommand extends Command
         $this->comment('Adding Provider in app config ...');
         $appConfig = file_get_contents(config_path('app.php'));
 
-        if (Str::contains($appConfig, 'Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class')) {
-            $this->warn('Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class provider is exists in app config ............ SKIPPED');
+        if (Str::contains($appConfig, 'Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class')) {
+            $this->warn('Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class provider is exists in app config ............ SKIPPED');
             return;
         }
 
         file_put_contents(config_path('app.php'), str_replace(
             "* Package Service Providers...\n         */",
-            "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class,",
+            "* Package Service Providers...\n         */\n"."        Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class,",
             $appConfig
         ));
-        $this->info('Sajadsdi\\LaraSetting\\Providers\\LaraSettingServiceProvider::class provider added to app config ..... DONE');
+        $this->info('Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class provider added to app config ..... DONE');
     }
 }

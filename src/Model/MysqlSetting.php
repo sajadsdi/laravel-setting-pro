@@ -1,10 +1,10 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Model;
+namespace Sajadsdi\LaravelSettingPro\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Sajadsdi\LaraSetting\Contracts\DatabaseModelInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 
 class MysqlSetting extends Model implements DatabaseModelInterface
 {

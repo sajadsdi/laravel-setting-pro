@@ -1,14 +1,14 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Jobs;
+namespace Sajadsdi\LaravelSettingPro\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Sajadsdi\ArrayDotNotation\Traits\MultiDotNotationTrait;
-use Sajadsdi\LaraSetting\Events\UpdateSettingEvent;
-use Sajadsdi\LaraSetting\Services\SettingStore;
+use Sajadsdi\LaravelSettingPro\Events\UpdateSettingEvent;
+use Sajadsdi\LaravelSettingPro\Services\SettingStore;
 
 class UpdateSettingJob implements ShouldQueue
 {

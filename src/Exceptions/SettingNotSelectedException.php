@@ -1,6 +1,6 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Exceptions;
+namespace Sajadsdi\LaravelSettingPro\Exceptions;
 
 class SettingNotSelectedException extends \Exception
 {

@@ -7,24 +7,24 @@ return [
         'drivers'     => [
             'file'     => [
                 'path'  => __DIR__ . '/../setting/',
-                'class' => \Sajadsdi\LaraSetting\Drivers\File::class,
+                'class' => \Sajadsdi\LaravelSettingPro\Drivers\File::class,
             ],
             'database' => [
                 'connection' => 'mysql',
-                'class'      => \Sajadsdi\LaraSetting\Drivers\Database::class,
+                'class'      => \Sajadsdi\LaravelSettingPro\Drivers\Database::class,
                 'models'     => [
-                    'mysql'   => \Sajadsdi\LaraSetting\Model\MysqlSetting::class,
-                    'mongodb' => \Sajadsdi\LaraSetting\Model\MongoSetting::class
+                    'mysql'   => \Sajadsdi\LaravelSettingPro\Model\MysqlSetting::class,
+                    'mongodb' => \Sajadsdi\LaravelSettingPro\Model\MongoSetting::class
                 ]
             ],
         ],
     ],
     'cache'          => [
-        'enabled' => true,
-        'class'   => \Sajadsdi\LaraSetting\Cache\Cache::class,
+        'enabled' => false,
+        'class'   => \Sajadsdi\LaravelSettingPro\Cache\Cache::class,
         'prefix'  => 'settings'
     ],
     'background_job' => false,
     'trigger_event'  => false,
-    'queue'          => 'setting'
+    'queue'          => 'settings'
 ];

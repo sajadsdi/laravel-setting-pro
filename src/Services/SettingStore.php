@@ -1,10 +1,9 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Services;
+namespace Sajadsdi\LaravelSettingPro\Services;
 
-use Sajadsdi\ArrayDotNotation\DotNotation;
-use Sajadsdi\LaraSetting\Contracts\CacheDriverInterface;
-use Sajadsdi\LaraSetting\Contracts\StoreDriverInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\CacheDriverInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\StoreDriverInterface;
 
 class SettingStore
 {

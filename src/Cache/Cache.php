@@ -1,8 +1,8 @@
 <?php
 
-namespace Sajadsdi\LaraSetting\Cache;
+namespace Sajadsdi\LaravelSettingPro\Cache;
 
-use Sajadsdi\LaraSetting\Contracts\CacheDriverInterface;
+use Sajadsdi\LaravelSettingPro\Contracts\CacheDriverInterface;
 use Illuminate\Support\Facades\Cache as laravelCache;
 
 class Cache implements CacheDriverInterface
