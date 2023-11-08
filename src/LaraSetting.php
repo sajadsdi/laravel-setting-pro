@@ -2,7 +2,6 @@
 
 namespace Sajadsdi\LaraSetting;
 
-use Illuminate\Support\Facades\Bus;
 use Sajadsdi\ArrayDotNotation\Exceptions\ArrayKeyNotFoundException;
 use Sajadsdi\ArrayDotNotation\Traits\MultiDotNotationTrait;
 use Sajadsdi\LaraSetting\Exceptions\SettingKeyNotFoundException;
@@ -125,7 +124,7 @@ class LaraSetting
                 $this->config['queue'],
             ];
             if ($this->config['background_job']) {
-                Bus::batch([new UpdateSettingJob(...$updateParams)])->name($setting)->dispatch();
+                UpdateSettingJob::dispatch(...$updateParams);
             } else {
                 UpdateSettingJob::dispatchSync(...$updateParams);
             }
