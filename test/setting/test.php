@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'welcome' => 'welcome to lara setting!',
+    'welcome' => 'welcome to Laravel Setting Pro',
     'version' => '1.0.0',
     'users'   => [
         '1' => [
