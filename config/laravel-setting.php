@@ -6,7 +6,7 @@ return [
         'import_from' => 'file',
         'drivers'     => [
             'file'     => [
-                'path'  => __DIR__ . '/../setting/',
+                'path'  => base_path('setting/'),
                 'class' => \Sajadsdi\LaravelSettingPro\Drivers\File::class,
             ],
             'database' => [

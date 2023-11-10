@@ -9,7 +9,8 @@ use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 class MysqlSetting extends Model implements DatabaseModelInterface
 {
     use SoftDeletes;
-    protected $table = "settings";
+
+    protected $table    = "settings";
     protected $fillable = ["setting", "data"];
 
     /**

@@ -14,7 +14,7 @@ class Database implements StoreDriverInterface
      */
     public function __construct(array $config)
     {
-        $this->model  = new $config['models'][$config['connection']];
+        $this->model = new $config['models'][$config['connection']];
     }
 
     /**

@@ -36,9 +36,9 @@ class PublishCommand extends Command
     private function publish()
     {
         $this->comment('Publishing configure ...');
-        $this->call('vendor:publish',['--tag' => "laravel-setting-pro-configure"]);
+        $this->call('vendor:publish', ['--tag' => "laravel-setting-pro-configure"]);
 
         $this->comment('Publishing migration ...');
-        $this->call('vendor:publish',['--tag' => "laravel-setting-pro-migration"]);
+        $this->call('vendor:publish', ['--tag' => "laravel-setting-pro-migration"]);
     }
 }

@@ -11,7 +11,7 @@ class SettingStore
     private array                $config  = [];
     private CacheDriverInterface $cache;
 
-    public function __construct(array $config = [])
+    public function __construct(array $config)
     {
         $this->config = $config;
         if ($this->cacheEnabled()) {
@@ -46,7 +46,7 @@ class SettingStore
     {
         $data = $this->getDriver($this->config['store']['default'])->get($name);
         if ($data === null) {
-            if($this->config['store']['import_from']) {
+            if ($this->config['store']['import_from']) {
                 $data = $this->getDriver($this->config['store']['import_from'])->get($name);
                 if ($data) {
                     $this->getDriver($this->config['store']['default'])->set($name, $data);

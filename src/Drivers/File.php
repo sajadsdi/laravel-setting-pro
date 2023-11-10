@@ -23,8 +23,8 @@ class File implements StoreDriverInterface
     public function get(string $key): mixed
     {
         $data = null;
-        $file = $this->config['path'].$key.'.php';
-        if(file_exists($file)) {
+        $file = $this->config['path'] . $key . '.php';
+        if (file_exists($file)) {
             $data = require $this->config['path'] . $key . '.php';
         }
         return $data;
@@ -37,7 +37,7 @@ class File implements StoreDriverInterface
      */
     public function set(string $key, mixed $data): void
     {
-        file_put_contents($this->config['path'].$key.'.php',str_replace([": "," {"," }","\n}"],[" => "," ["," ]","\n]"],"<?php\n//This file updated in ". date(DATE_ATOM) ."\nreturn " . json_encode($data, JSON_PRETTY_PRINT|JSON_NUMERIC_CHECK|JSON_PRESERVE_ZERO_FRACTION|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE ) . ';'));
+        file_put_contents($this->config['path'] . $key . '.php', str_replace([": ", " {", " }", "\n}"], [" => ", " [", " ]", "\n]"], "<?php\n//This file updated in " . date(DATE_ATOM) . "\nreturn " . json_encode($data, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ';'));
     }
 
 }

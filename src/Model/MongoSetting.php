@@ -9,7 +9,8 @@ use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 class MongoSetting extends Model implements DatabaseModelInterface
 {
     use SoftDeletes;
-    protected $table = "settings";
+
+    protected $table      = "settings";
     protected $connection = 'mongodb';
     protected $fillable   = ["setting", "data"];
 

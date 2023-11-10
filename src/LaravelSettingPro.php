@@ -18,7 +18,7 @@ class LaravelSettingPro
     private array        $config   = [];
     use MultiDotNotationTrait;
 
-    public function __construct(array $config = [])
+    public function __construct(array $config)
     {
         $this->config = $config;
         $this->store  = app()->make(SettingStore::class);

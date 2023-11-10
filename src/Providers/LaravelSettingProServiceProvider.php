@@ -14,11 +14,13 @@ class LaravelSettingProServiceProvider extends ServiceProvider
     public function register(): void
     {
         $config = config('laravel-setting');
-        $this->app->singleton(LaravelSettingPro::class, function () use ($config) {
-            return new LaravelSettingPro($config);
-        });
+
         $this->app->singleton(SettingStore::class, function () use ($config) {
             return new SettingStore($config);
+        });
+
+        $this->app->singleton(LaravelSettingPro::class, function () use ($config) {
+            return new LaravelSettingPro($config);
         });
 
         $this->app->singleton(Setting::class);
