@@ -18,10 +18,10 @@ class LaravelSettingPro
     private array        $config   = [];
     use MultiDotNotationTrait;
 
-    public function __construct(array $config)
+    public function __construct(array $config, SettingStore $store)
     {
         $this->config = $config;
-        $this->store  = app()->make(SettingStore::class);
+        $this->store  = $store;
     }
 
     /**
