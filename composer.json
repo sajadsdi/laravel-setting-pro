@@ -19,6 +19,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "laravel/framework": "^10.0",
         "sajadsdi/array-dot-notation": "^1.0"
     },
     "extra": {
