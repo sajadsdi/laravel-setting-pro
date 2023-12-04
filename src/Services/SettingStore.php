@@ -7,10 +7,15 @@ use Sajadsdi\LaravelSettingPro\Contracts\StoreDriverInterface;
 
 class SettingStore
 {
-    private array                $drivers = [];
-    private array                $config  = [];
+    private array $drivers = [];
+    private array $config = [];
     private CacheDriverInterface $cache;
 
+    /**
+     * SettingStore constructor.
+     *
+     * @param array $config
+     */
     public function __construct(array $config)
     {
         $this->config = $config;
@@ -20,7 +25,9 @@ class SettingStore
     }
 
     /**
-     * @param $name
+     * Get the value of a setting.
+     *
+     * @param mixed $name
      * @return mixed
      */
     public function get($name): mixed
@@ -39,6 +46,8 @@ class SettingStore
     }
 
     /**
+     * Get the value of a setting from the appropriate driver.
+     *
      * @param string $name
      * @return mixed
      */
@@ -57,6 +66,8 @@ class SettingStore
     }
 
     /**
+     * Set the value of a setting.
+     *
      * @param string $name
      * @param mixed $data
      * @return void
@@ -67,6 +78,8 @@ class SettingStore
     }
 
     /**
+     * Check if caching is enabled.
+     *
      * @return bool
      */
     private function cacheEnabled(): bool
@@ -75,6 +88,8 @@ class SettingStore
     }
 
     /**
+     * Get the driver instance for the given name.
+     *
      * @param string $name
      * @return StoreDriverInterface
      */
@@ -87,6 +102,8 @@ class SettingStore
     }
 
     /**
+     * Set the driver instance for the given name.
+     *
      * @param string $name
      * @param StoreDriverInterface $class
      * @return void
@@ -97,6 +114,8 @@ class SettingStore
     }
 
     /**
+     * Set the cache instance.
+     *
      * @return void
      */
     private function setCache(): void
@@ -105,6 +124,8 @@ class SettingStore
     }
 
     /**
+     * Get the cache instance.
+     *
      * @return CacheDriverInterface
      */
     public function cache(): CacheDriverInterface

@@ -11,6 +11,4 @@ interface CacheDriverInterface
     public function set(string $key, mixed $data): void;
 
     public function clear($key): void;
-
-    public function clearAll(): void;
 }

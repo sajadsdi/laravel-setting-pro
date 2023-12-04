@@ -44,12 +44,4 @@ class Cache implements CacheDriverInterface
     {
         laravelCache::forget($this->config['prefix'] . '.' . $key);
     }
-
-    /**
-     * @return void
-     */
-    public function clearAll(): void
-    {
-        laravelCache::flush();
-    }
 }

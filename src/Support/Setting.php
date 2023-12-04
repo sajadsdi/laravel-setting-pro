@@ -2,6 +2,7 @@
 
 namespace Sajadsdi\LaravelSettingPro\Support;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingKeyNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotSelectedException;
@@ -10,15 +11,31 @@ use Sajadsdi\LaravelSettingPro\LaravelSettingPro;
 class Setting
 {
     private static self $obj;
-    private string      $select = '';
+    private string $select = '';
     private LaravelSettingPro $setting;
 
+    /**
+     * Create a new Setting instance.
+     *
+     * @param LaravelSettingPro $setting
+     */
     public function __construct(LaravelSettingPro $setting)
     {
         $this->setting = $setting;
-        self::$obj     = $this;
+        self::$obj = $this;
     }
 
+    /**
+     * Handle dynamic static method calls.
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     * @throws SettingKeyNotFoundException
+     * @throws SettingNotFoundException
+     * @throws SettingNotSelectedException
+     * @throws BindingResolutionException
+     */
     public static function __callStatic(string $name, array $arguments)
     {
         if (strtolower($name) == 'select') {
@@ -30,6 +47,16 @@ class Setting
         }
     }
 
+    /**
+     * Handle dynamic method calls.
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     * @throws SettingKeyNotFoundException
+     * @throws SettingNotFoundException
+     * @throws SettingNotSelectedException
+     */
     public function __call(string $name, array $arguments)
     {
         if (strtolower($name) == 'select') {
@@ -42,6 +69,8 @@ class Setting
     }
 
     /**
+     * Get the value of a setting.
+     *
      * @param mixed $keys
      * @param mixed $default
      * @return mixed
@@ -55,6 +84,8 @@ class Setting
     }
 
     /**
+     * Set the value of multiple settings.
+     *
      * @param array $keyValues
      * @return void
      * @throws SettingNotSelectedException
@@ -65,6 +96,8 @@ class Setting
     }
 
     /**
+     * Select a setting to work with.
+     *
      * @param string $setting
      * @return Setting
      */
@@ -74,18 +107,29 @@ class Setting
         return $this;
     }
 
-    private static function Obj()
-    {
-        if (!isset(self::$obj)) {
-            self::$obj = app()->make(self::class);
-        }
-        return self::$obj;
-    }
-
+    /**
+     * Get the currently selected setting.
+     *
+     * @return string
+     */
     private function getSelect(): string
     {
         $select = $this->select;
         $this->selectSetting();
         return $select;
+    }
+
+    /**
+     * Get the instance of the Setting class.
+     *
+     * @return Setting
+     * @throws BindingResolutionException
+     */
+    private static function Obj(): Setting
+    {
+        if (!isset(self::$obj)) {
+            self::$obj = app()->make(self::class);
+        }
+        return self::$obj;
     }
 }
