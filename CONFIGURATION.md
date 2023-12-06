@@ -7,12 +7,12 @@ Here is the configuration file for Laravel Setting Pro `laravel-setting.php`:
 <?php
 
 return [
-    'store'                => [
+    'store'          => [
         'default'     => 'database',
         'import_from' => 'file',
         'drivers'     => [
             'file'     => [
-                'path'  => base_path('setting/'),
+                'path'  => base_path('setting'),
                 'class' => \Sajadsdi\LaravelSettingPro\Drivers\File::class,
             ],
             'database' => [
@@ -25,15 +25,16 @@ return [
             ],
         ],
     ],
-    'cache'                => [
+    'cache'          => [
         'enabled' => false,
         'class'   => \Sajadsdi\LaravelSettingPro\Cache\Cache::class,
         'prefix'  => 'settings'
     ],
-    'process_to_queue'     => false,
-    'queue'                => 'settings',
-    'trigger_update_event' => false,
+    'process_to_queue' => false,
+    'queue'          => 'settings',
+    'trigger_events'  => false
 ];
+
 ```
 
 Now, let's break down the purpose of each key in this configuration:
@@ -61,8 +62,8 @@ Now, let's break down the purpose of each key in this configuration:
 
     - **`queue`**: Specifies the queue name for processing settings if a queue is used.
 
-5. **`trigger_update_event` Section:**
+5. **`trigger_events` Section:**
 
-    - **`trigger_update_event`**: Indicates whether an update event should be triggered when a setting is updated. Currently, this feature is disabled.
+    - **`trigger_events`**: Indicates whether an update event should be triggered when a setting is updated. Currently, this feature is disabled.
 
 This configuration provides flexibility and control over various aspects of Laravel Setting Pro, allowing you to tailor it to your specific requirements.
