@@ -31,7 +31,6 @@ class InstallCommand extends Command
     {
         $this->info('Installing Laravel Setting Pro ...');
         $this->installMigrations();
-        $this->installProvider();
         $config = config('laravel-setting');
         $this->installSettingDirectory($config);
         $this->info('Installation completed !');
@@ -77,21 +76,4 @@ class InstallCommand extends Command
         $this->alert(setting('test', 'welcome') . " Ver:" . setting('test', 'version'));
     }
 
-    private function installProvider()
-    {
-        $this->comment('Adding Provider in app config ...');
-        $appConfig = file_get_contents(config_path('app.php'));
-
-        if (Str::contains($appConfig, 'Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class')) {
-            $this->warn('Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class provider is exists in app config ............ SKIPPED');
-            return;
-        }
-
-        file_put_contents(config_path('app.php'), str_replace(
-            "* Package Service Providers...\n         */",
-            "* Package Service Providers...\n         */\n" . "        Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class,",
-            $appConfig
-        ));
-        $this->info('Sajadsdi\\LaravelSettingPro\\Providers\\LaravelSettingProServiceProvider::class provider added to app config ..... DONE');
-    }
 }
