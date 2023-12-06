@@ -54,13 +54,13 @@ class InstallCommand extends Command
     private function installTestSetting($config)
     {
         $this->comment('Creating test setting ...');
-        if (file_exists($config['store']['drivers']['file']['path'] . 'test.php')) {
+        if (file_exists($config['store']['drivers']['file']['path'] . DIRECTORY_SEPARATOR . 'test.php')) {
             $this->warn('test.php is exists in setting directory ............ SKIPPED');
         } else {
-            file_put_contents($config['store']['drivers']['file']['path'] . 'test.php',
+            file_put_contents($config['store']['drivers']['file']['path'] . DIRECTORY_SEPARATOR . 'test.php',
                 file_get_contents(__DIR__ . "/../../test/setting/test.php")
             );
-            $this->info($config['store']['drivers']['file']['path'] . 'test.php created ....... DONE');
+            $this->info($config['store']['drivers']['file']['path'] . DIRECTORY_SEPARATOR . 'test.php created ....... DONE');
         }
     }
 
