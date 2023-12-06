@@ -8,29 +8,28 @@ use Sajadsdi\LaravelSettingPro\Contracts\StoreDriverInterface;
 class SettingStore
 {
     private array $drivers = [];
-    private array $config = [];
+    private array $config;
     private CacheDriverInterface $cache;
 
     /**
      * SettingStore constructor.
-     *
-     * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct()
     {
-        $this->config = $config;
+        $this->config = config('laravel-setting');
+
         if ($this->cacheEnabled()) {
-            $this->setCache();
+            $this->setCache(new $this->config['cache']['class']($this->config['cache']));
         }
     }
 
     /**
      * Get the value of a setting.
      *
-     * @param mixed $name
+     * @param string $name
      * @return mixed
      */
-    public function get($name): mixed
+    public function get(string $name): mixed
     {
         $data = null;
         if ($this->cacheEnabled()) {
@@ -116,11 +115,12 @@ class SettingStore
     /**
      * Set the cache instance.
      *
+     * @param CacheDriverInterface $cacheDriver
      * @return void
      */
-    private function setCache(): void
+    private function setCache(CacheDriverInterface $cacheDriver): void
     {
-        $this->cache = new $this->config['cache']['class']($this->config['cache']);
+        $this->cache = $cacheDriver;
     }
 
     /**

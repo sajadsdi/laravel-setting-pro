@@ -28,12 +28,11 @@ class LaravelSettingPro
     /**
      * Constructor for Laravel Setting Pro class.
      *
-     * @param array $config Configuration options for Laravel Setting Pro.
      * @param SettingStore $store Instance of SettingStore for storing settings.
      */
-    public function __construct(array $config, SettingStore $store)
+    public function __construct(SettingStore $store)
     {
-        $this->config = $config;
+        $this->config = config('laravel-setting');
         $this->store = $store;
     }
 
