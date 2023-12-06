@@ -74,6 +74,9 @@ class InstallCommand extends Command
     {
         $this->comment("testing ...");
         $this->alert(setting('test', 'welcome') . " Ver:" . setting('test', 'version'));
+        $this->comment("nested key testing for 'users.5.profile.address' from test setting ...");
+        $this->alert(setting('test', 'users.5.profile.address'));
+        $this->comment("testing finished...");
     }
 
 }
