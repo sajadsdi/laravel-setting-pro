@@ -36,7 +36,7 @@ class LaravelSettingProServiceProvider extends ServiceProvider
 
     private function migrationPublishing()
     {
-        $this->publishes([__DIR__ . '/../../database/migrations/2023_11_03_030451_create_setting_table.php' => database_path('migrations/2023_11_03_030451_create_setting_table.php')], 'laravel-setting-pro-migration');
+        $this->publishes([__DIR__ . '/../../database/migrations/2023_11_03_030451_create_settings_table.php' => database_path('migrations/2023_11_03_030451_create_settings_table.php')], 'laravel-setting-pro-migration');
     }
 
     private function registerCommands()
