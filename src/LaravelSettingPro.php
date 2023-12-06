@@ -171,7 +171,7 @@ class LaravelSettingPro
                 $setting,
                 $keyValue,
                 $this->config['cache']['enabled'],
-                $this->config['trigger_event'],
+                $this->config['trigger_events'],
                 $this->config['queue'],
             ];
 

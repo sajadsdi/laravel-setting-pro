@@ -24,7 +24,7 @@ return [
         'class'   => \Sajadsdi\LaravelSettingPro\Cache\Cache::class,
         'prefix'  => 'settings'
     ],
-    'background_job' => false,
-    'trigger_event'  => false,
-    'queue'          => 'settings'
+    'process_to_queue' => false,
+    'queue'          => 'settings',
+    'trigger_events'  => false
 ];
