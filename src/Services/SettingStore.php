@@ -53,6 +53,7 @@ class SettingStore
     public function getSetting(string $name): mixed
     {
         $data = $this->getDriver($this->config['store']['default'])->get($name);
+
         if ($data === null) {
             if ($this->config['store']['import_from']) {
                 $data = $this->getDriver($this->config['store']['import_from'])->get($name);

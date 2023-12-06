@@ -171,9 +171,10 @@ class LaravelSettingPro
                 $setting,
                 $keyValue,
                 $this->config['cache']['enabled'],
-                $this->config['trigger_update_event'],
+                $this->config['trigger_event'],
                 $this->config['queue'],
             ];
+
             if ($this->config['process_to_queue']) {
                 UpdateSettingJob::dispatch(...$updateParams);
             } else {

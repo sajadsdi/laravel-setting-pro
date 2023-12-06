@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'store'                => [
+    'store'          => [
         'default'     => 'database',
         'import_from' => 'file',
         'drivers'     => [
@@ -19,12 +19,12 @@ return [
             ],
         ],
     ],
-    'cache'                => [
+    'cache'          => [
         'enabled' => false,
         'class'   => \Sajadsdi\LaravelSettingPro\Cache\Cache::class,
         'prefix'  => 'settings'
     ],
-    'process_to_queue'     => false,
-    'queue'                => 'settings',
-    'trigger_update_event' => false,
+    'background_job' => false,
+    'trigger_event'  => false,
+    'queue'          => 'settings'
 ];
