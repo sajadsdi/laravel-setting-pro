@@ -3,13 +3,10 @@
 namespace Sajadsdi\LaravelSettingPro\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 
 class MysqlSetting extends Model implements DatabaseModelInterface
 {
-    use SoftDeletes;
-
     protected $table = "settings";
     protected $fillable = ["setting", "data"];
 

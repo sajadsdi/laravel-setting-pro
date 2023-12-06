@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->string('setting')->primary();
             $table->longText('data');
-            $table->softDeletes();
             $table->timestamps();
         });
     }

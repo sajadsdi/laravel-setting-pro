@@ -3,12 +3,10 @@
 namespace Sajadsdi\LaravelSettingPro\Model;
 
 use Jenssegers\Mongodb\Eloquent\Model;
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 
 class MongoSetting extends Model implements DatabaseModelInterface
 {
-    use SoftDeletes;
 
     protected $table = "settings";
     protected $connection = 'mongodb';
