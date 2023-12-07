@@ -67,7 +67,7 @@ class InstallCommand extends Command
     private function installMigrations()
     {
         $this->comment('Migrating ...');
-        $this->call('migrate', ['--path' => "database/migrations/2023_11_03_030451_create_setting_table.php"]);
+        $this->call('migrate', ['--path' => "database/migrations/2023_11_03_030451_create_settings_table.php"]);
     }
 
     private function testSetting()

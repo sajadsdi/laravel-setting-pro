@@ -16,7 +16,7 @@ class SettingStore
      */
     public function __construct()
     {
-        $this->config = config('laravel-setting');
+        $this->config = config('_setting');
 
         if ($this->cacheEnabled()) {
             $this->setCache(new $this->config['cache']['class']($this->config['cache']));

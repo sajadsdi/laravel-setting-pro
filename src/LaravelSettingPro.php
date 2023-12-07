@@ -32,7 +32,7 @@ class LaravelSettingPro
      */
     public function __construct(SettingStore $store)
     {
-        $this->config = config('laravel-setting');
+        $this->config = config('_setting');
         $this->store = $store;
     }
 

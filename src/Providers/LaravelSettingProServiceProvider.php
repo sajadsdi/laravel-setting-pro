@@ -31,7 +31,7 @@ class LaravelSettingProServiceProvider extends ServiceProvider
 
     private function configurePublishing()
     {
-        $this->publishes([__DIR__ . '/../../config/laravel-setting.php' => config_path('laravel-setting.php')], 'laravel-setting-pro-configure');
+        $this->publishes([__DIR__ . '/../../config/_setting.php' => config_path('_setting.php')], 'laravel-setting-pro-configure');
     }
 
     private function migrationPublishing()
