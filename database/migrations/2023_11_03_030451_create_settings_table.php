@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::connection('mysql')->create('settings', function (Blueprint $table) {
             $table->string('setting')->primary();
             $table->longText('data');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::connection('mysql')->dropIfExists('settings');
     }
 };
