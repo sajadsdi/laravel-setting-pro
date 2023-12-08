@@ -14,6 +14,8 @@ storage using both file-based and database drivers.
 The Laravel Setting Pro package simplifies application settings management in Laravel and provides these key features:
 
 - **Flexible Storage**: Choose between file-based or database storage to suit your application's needs.
+ 
+- **Flexible Database**: Choose between `mysql` or `mongodb` or create own db connection for settings.
 
 - **Caching**: Improve performance with automatic caching of settings.
 
@@ -59,7 +61,7 @@ First, publish the configuration and migration files using:
 php artisan setting:publish
 ````
 
-This will publish `laravel-setting.php` to your `config` folder and migration file.
+This will publish `_setting.php` to your `config` folder and migration file.
 
 Then, use the installation command to perform migrations and any necessary setup operations:
 

@@ -1,7 +1,7 @@
 ## Laravel Setting Pro Configuration
 Explore and customize the Laravel Setting Pro package with the following configuration options tailored to your needs.
 
-Here is the configuration file for Laravel Setting Pro `laravel-setting.php`:
+Here is the configuration file for Laravel Setting Pro `_setting.php`:
 
 ```php
 <?php
@@ -36,6 +36,8 @@ return [
 ];
 
 ```
+Choosing the name `_setting` for the configuration of this package is because we need to load this file in first of all configurations in Laravel so that you can use setting helpers in other configurations.
+
 
 Now, let's break down the purpose of each key in this configuration:
 
@@ -46,7 +48,9 @@ Now, let's break down the purpose of each key in this configuration:
     - **`drivers`**: Configures different drivers for storing settings.
 
         - **`file`**: Configures file storage settings, including the file path (`path`) and the driver class.
-        - **`database`**: Configures database storage settings, including the database connection (`connection`), driver class, and associated models for each database.
+        - **`database`**: Configures database storage settings, including the database connection (`connection`), driver class, and associated models for each database. You can choose `mysql` or `mongodb` or any defined models connection. 
+        - if you need use mongodb ,you must install `mongodb/laravel-mongodb
+          ` package and add connection for mongodb in database config , and run artisan command `php artisan setting:publish-mongodb` and `php artisan migrate`
 
 2. **`cache` Section:**
 
