@@ -2,13 +2,12 @@
 
 namespace Sajadsdi\LaravelSettingPro\Model;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 use Sajadsdi\LaravelSettingPro\Contracts\DatabaseModelInterface;
 
 class MongoSetting extends Model implements DatabaseModelInterface
 {
-
-    protected $table = "settings";
+    protected $collection = "settings";
     protected $connection = 'mongodb';
     protected $fillable = ["setting", "data"];
 
