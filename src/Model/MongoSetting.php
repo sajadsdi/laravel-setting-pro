@@ -40,6 +40,6 @@ class MongoSetting extends Model implements DatabaseModelInterface
      */
     public function deleteSetting(string $key): void
     {
-        self::where('setting',$key)->delete();
+        self::where('setting',$key)?->first()->delete();
     }
 }

@@ -20,8 +20,6 @@ class LaravelSettingProServiceProvider extends ServiceProvider
         $this->app->singleton(LaravelSettingPro::class);
 
         $this->app->singleton(Setting::class);
-
-        Model::setConnectionResolver($this->app['db']);
     }
 
     public function boot(): void
