@@ -33,4 +33,13 @@ class MongoSetting extends Model implements DatabaseModelInterface
     {
         self::updateOrCreate(['setting' => $key], ['data' => $data]);
     }
+
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function deleteSetting(string $key): void
+    {
+        self::where('setting',$key)->delete();
+    }
 }

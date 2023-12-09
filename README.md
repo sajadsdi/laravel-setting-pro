@@ -138,7 +138,7 @@ php artisan cache:clear
 ```
 
 ## Configuration
-You can change `laravel-setting` config on laravel config path.
+You can change `_setting` config on laravel config path.
 
 For more details about Configuration Laravel Setting Pro , [click here](CONFIGURATION.md)
 

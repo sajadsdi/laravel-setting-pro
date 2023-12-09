@@ -35,4 +35,13 @@ class Database implements StoreDriverInterface
     {
         $this->model->setSetting($key, $data);
     }
+
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function delete(string $key): void
+    {
+        $this->model->deleteSetting($key);
+    }
 }

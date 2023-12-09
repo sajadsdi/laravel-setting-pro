@@ -78,6 +78,17 @@ class SettingStore
     }
 
     /**
+     * delete a setting.
+     *
+     * @param string $name
+     * @return void
+     */
+    public function delete(string $name): void
+    {
+        $this->getDriver($this->config['store']['default'])->delete($name);
+    }
+
+    /**
      * Check if caching is enabled.
      *
      * @return bool

@@ -2,6 +2,7 @@
 
 namespace Sajadsdi\LaravelSettingPro\Providers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Sajadsdi\LaravelSettingPro\Console\InstallCommand;
 use Sajadsdi\LaravelSettingPro\Console\PublishCommand;
@@ -19,6 +20,8 @@ class LaravelSettingProServiceProvider extends ServiceProvider
         $this->app->singleton(LaravelSettingPro::class);
 
         $this->app->singleton(Setting::class);
+
+        Model::setConnectionResolver($this->app['db']);
     }
 
     public function boot(): void

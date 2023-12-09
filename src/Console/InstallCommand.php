@@ -31,7 +31,7 @@ class InstallCommand extends Command
     {
         $this->info('Installing Laravel Setting Pro ...');
         $this->installMigrations();
-        $config = config('laravel-setting');
+        $config = config('_setting');
         $this->installSettingDirectory($config);
         $this->info('Installation completed !');
         $this->installTestSetting($config);

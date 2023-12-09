@@ -42,4 +42,15 @@ class File implements StoreDriverInterface
         file_put_contents($this->config['path'] . self::DS . $key . '.php', str_replace([": ", " {", " }", "\n}"], [" => ", " [", " ]", "\n]"], "<?php\n//This file updated in " . date(DATE_ATOM) . "\nreturn " . json_encode($data, JSON_PRETTY_PRINT | JSON_NUMERIC_CHECK | JSON_PRESERVE_ZERO_FRACTION | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . ';'));
     }
 
+    /**
+     * @param string $key
+     * @return void
+     */
+    public function delete(string $key): void
+    {
+        $file = $this->config['path'] . self::DS . $key . '.php';
+        if (file_exists($file)) {
+            unlink($file);
+        }
+    }
 }

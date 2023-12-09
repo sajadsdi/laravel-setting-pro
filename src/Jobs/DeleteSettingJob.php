@@ -6,11 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
+use Sajadsdi\ArrayDotNotation\Exceptions\ArrayKeyNotFoundException;
 use Sajadsdi\ArrayDotNotation\Traits\MultiDotNotationTrait;
-use Sajadsdi\LaravelSettingPro\Events\UpdateSettingEvent;
+use Sajadsdi\LaravelSettingPro\Events\DeleteSettingEvent;
 use Sajadsdi\LaravelSettingPro\Services\SettingStore;
 
-class UpdateSettingJob implements ShouldQueue
+class DeleteSettingJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, MultiDotNotationTrait;
 
@@ -18,25 +19,31 @@ class UpdateSettingJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public string $settingName, public array $keyValue, public bool $cacheEnabled, public bool $triggerEvent, string $queue)
+    public function __construct(public string $settingName, public array $keys, public bool $cacheEnabled, public bool $triggerEvent, string $queue)
     {
         $this->onQueue($queue);
     }
 
     /**
      * Execute the job.
+     * @throws ArrayKeyNotFoundException
      */
     public function handle(SettingStore $store): void
     {
         $oldData = $store->getSetting($this->settingName) ?? [];
-        $store->set($this->settingName, $this->setByDotMulti($oldData, $this->keyValue));
+
+        if (!$this->keys) {
+            $store->delete($this->settingName);
+        } else {
+            $store->set($this->settingName, $this->deleteByDotMulti($oldData, $this->keys));
+        }
 
         if ($this->cacheEnabled) {
             $store->cache()->clear($this->settingName);
         }
 
         if ($this->triggerEvent) {
-            UpdateSettingEvent::dispatch($this->settingName, $this->keyValue, $oldData);
+            DeleteSettingEvent::dispatch($this->settingName, $this->keys, $oldData);
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace Sajadsdi\LaravelSettingPro\Support;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Sajadsdi\ArrayDotNotation\Exceptions\ArrayKeyNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingKeyNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotSelectedException;
@@ -34,7 +35,6 @@ class Setting
      * @throws SettingKeyNotFoundException
      * @throws SettingNotFoundException
      * @throws SettingNotSelectedException
-     * @throws BindingResolutionException
      */
     public static function __callStatic(string $name, array $arguments)
     {
@@ -69,7 +69,7 @@ class Setting
     }
 
     /**
-     * Get the value of a setting.
+     * Get values of keys on selected setting.
      *
      * @param mixed $keys
      * @param mixed $default
@@ -84,7 +84,7 @@ class Setting
     }
 
     /**
-     * Set the value of multiple settings.
+     * Set values of keys on selected setting.
      *
      * @param array $keyValues
      * @return void
@@ -93,6 +93,19 @@ class Setting
     public function set(array $keyValues): void
     {
         $this->setting->set($this->getSelect(), $keyValues);
+    }
+
+    /**
+     * delete keys of the selected setting.
+     *
+     * @param array|string|null $keys
+     * @return void
+     * @throws SettingNotSelectedException
+     * @throws ArrayKeyNotFoundException
+     */
+    public function delete(array|string $keys = null): void
+    {
+        $this->setting->delete($this->getSelect(), $keys);
     }
 
     /**
@@ -123,12 +136,11 @@ class Setting
      * Get the instance of the Setting class.
      *
      * @return Setting
-     * @throws BindingResolutionException
      */
     private static function Obj(): Setting
     {
         if (!isset(self::$obj)) {
-            self::$obj = app()->make(self::class);
+            self::$obj = app(self::class);
         }
         return self::$obj;
     }
