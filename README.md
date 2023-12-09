@@ -28,7 +28,7 @@ The Laravel Setting Pro package simplifies application settings management in La
 - **Artisan Commands for Ease of Use**: Publish configuration and migrations effortlessly with the `setting:publish`
   artisan command; complete installations, migrations, and initial tests using the `setting:install` command.
 
-- **Easy get and set settings with dot notation**: Get and set nested settings keys with dot notation.
+- **Easy get & set and delete settings with dot notation**: `get` & `set` & `delete` operations on nested settings keys.
 
 - **Easy import settings** : Import settings from a driver to default store driver.
 
@@ -88,7 +88,14 @@ $value = setting()->select('my_setting')->get('key', 'default value');
 
 // Set a setting value
 setting('my_setting')->set(['key' => 'value']);
+//or
 setting()->select('my_setting')->set(['key' => 'value']);
+
+
+//delete a key from setting
+setting('my_setting')->delete('key');
+//or
+setting()->select('my_setting')->delete('key');
 
 ```
 
@@ -110,6 +117,11 @@ Setting::select('my_setting')->set('key', 'value');
 //or
 Setting::my_setting()->set('key', 'value');
 
+//delete key from setting
+Setting::select('my_setting')->delete('key');
+//or
+Setting::my_setting()->delete('key');
+
 ```
 
 ## Advanced Usage
@@ -124,8 +136,12 @@ $value = setting('my_setting')->get(['users.3.profile.pic','users.3.profile.name
 
 
 //set operation 
-
 setting::select('my_setting')->set(['users.3.profile.pic' => "profile.png",'users.3.profile.name' => "john"])
+
+//delete multiple keys
+setting::select('my_setting')->delete(['users.3.profile.pic','users.3.profile.name']);
+
+// it's very Easy
 ```
 This package use `Dot Notation Array` package to getting keys and setting operations you can see [Documentation](https://github.com/sajadsdi/array-dot-notation) to better use for Laravel Setting Pro
 
