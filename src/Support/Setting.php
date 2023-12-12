@@ -11,8 +11,8 @@ use Sajadsdi\LaravelSettingPro\LaravelSettingPro;
 
 class Setting
 {
-    private static self $obj;
-    private string $select = '';
+    private static self       $obj;
+    private string            $select = '';
     private LaravelSettingPro $setting;
 
     /**
@@ -23,7 +23,7 @@ class Setting
     public function __construct(LaravelSettingPro $setting)
     {
         $this->setting = $setting;
-        self::$obj = $this;
+        self::$obj     = $this;
     }
 
     /**
@@ -53,6 +53,7 @@ class Setting
      * @param string $name
      * @param array $arguments
      * @return mixed
+     *
      * @throws SettingKeyNotFoundException
      * @throws SettingNotFoundException
      * @throws SettingNotSelectedException
@@ -71,16 +72,18 @@ class Setting
     /**
      * Get values of keys on selected setting.
      *
-     * @param mixed $keys
-     * @param mixed $default
+     * @param mixed $keys Keys to access values in the setting.
+     * @param mixed|null $default Default value to return if the setting or key is not found.
+     * @param bool $throw flag to disable 'NotFound' exceptions
      * @return mixed
-     * @throws SettingNotSelectedException
+     *
      * @throws SettingKeyNotFoundException
      * @throws SettingNotFoundException
+     * @throws SettingNotSelectedException
      */
-    public function get(mixed $keys = '', mixed $default = null): mixed
+    public function get(mixed $keys = [], mixed $default = null, bool $throw = true): mixed
     {
-        return $this->setting->get($this->getSelect(), $keys, $default);
+        return $this->setting->get($this->getSelect(), $keys, $default, $throw);
     }
 
     /**
@@ -98,14 +101,25 @@ class Setting
     /**
      * delete keys of the selected setting.
      *
-     * @param array|string|null $keys
+     * @param mixed $keys
      * @return void
      * @throws SettingNotSelectedException
      * @throws ArrayKeyNotFoundException
      */
-    public function delete(array|string $keys = null): void
+    public function delete(mixed $keys = []): void
     {
         $this->setting->delete($this->getSelect(), $keys);
+    }
+
+    /**
+     * @param mixed $keys
+     * @return bool
+     *
+     * @throws SettingNotSelectedException
+     */
+    public function has(mixed $keys = []): bool
+    {
+        return $this->setting->has($this->getSelect(), $keys);
     }
 
     /**

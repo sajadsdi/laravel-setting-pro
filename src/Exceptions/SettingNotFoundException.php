@@ -6,7 +6,6 @@ class SettingNotFoundException extends \Exception
 {
     public function __construct($setting)
     {
-        $message = "We can't find '{$setting}' setting from store!";
-        parent::__construct($message);
+        parent::__construct("We can't find '{$setting}' setting from store!");
     }
 }

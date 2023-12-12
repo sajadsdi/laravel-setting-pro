@@ -31,11 +31,12 @@ class DeleteSettingJob implements ShouldQueue
     public function handle(SettingStore $store): void
     {
         $oldData = $store->getSetting($this->settingName) ?? [];
+        $data = $oldData;
 
         if (!$this->keys) {
             $store->delete($this->settingName);
         } else {
-            $store->set($this->settingName, $this->deleteByDotMulti($oldData, $this->keys));
+            $store->set($this->settingName, $this->deleteByDotMulti($data, $this->keys));
         }
 
         if ($this->cacheEnabled) {

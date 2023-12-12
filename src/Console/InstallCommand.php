@@ -3,7 +3,6 @@
 namespace Sajadsdi\LaravelSettingPro\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
 class InstallCommand extends Command
 {
@@ -58,7 +57,7 @@ class InstallCommand extends Command
             $this->warn('test.php is exists in setting directory ............ SKIPPED');
         } else {
             file_put_contents($config['store']['drivers']['file']['path'] . DIRECTORY_SEPARATOR . 'test.php',
-                file_get_contents(__DIR__ . "/../../test/setting/test.php")
+                file_get_contents(__DIR__ . "/../../tests/setting/test.php")
             );
             $this->info($config['store']['drivers']['file']['path'] . DIRECTORY_SEPARATOR . 'test.php created ....... DONE');
         }
@@ -73,9 +72,29 @@ class InstallCommand extends Command
     private function testSetting()
     {
         $this->comment("testing ...");
+
         $this->alert(setting('test', 'welcome') . " Ver:" . setting('test', 'version'));
+
         $this->comment("nested key testing for 'users.5.profile.address' from test setting ...");
-        $this->alert(setting('test', 'users.5.profile.address'));
+
+        $this->alert('address is: ' . setting('test', 'users.5.profile.address'));
+
+        $this->comment("removing 'users.5.profile.address' key from test setting ...");
+
+        setting('test')->delete('users.5.profile.address');
+
+        $has = setting('test')->has('users.5.profile.address');
+
+        $this->comment("testing has for deleted key (users.5.profile.address) ...");
+
+        $this->alert($has ? "not deleted !" : "deleted successfully !");
+
+        $this->comment("set deleted key again. setting 'test value set!' value on 'users.5.profile.address' key ...");
+
+        setting('test')->set(['users.5.profile.address' => 'test value set!']);
+
+        $this->alert('new address is: ' . setting('test', 'users.5.profile.address'));
+
         $this->comment("testing finished !");
     }
 

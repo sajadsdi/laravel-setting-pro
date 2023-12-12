@@ -28,7 +28,7 @@ The Laravel Setting Pro package simplifies application settings management in La
 - **Artisan Commands for Ease of Use**: Publish configuration and migrations effortlessly with the `setting:publish`
   artisan command; complete installations, migrations, and initial tests using the `setting:install` command.
 
-- **Easy get & set and delete settings with dot notation**: `get` & `set` & `delete` operations on nested settings keys.
+- **Easy get & set and delete settings with dot notation**: `get` & `set` & `delete` and `has` operations on nested settings keys.
 
 - **Easy import settings** : Import settings from a driver to default store driver.
 
@@ -122,6 +122,13 @@ Setting::select('my_setting')->delete('key');
 //or
 Setting::my_setting()->delete('key');
 
+//checking exists by has method
+if(Setting::select('my_setting')->has('key')){
+    echo "key exists!";
+}else{
+    echo "key not exists!";
+}
+
 ```
 
 ## Advanced Usage
@@ -140,6 +147,14 @@ setting::select('my_setting')->set(['users.3.profile.pic' => "profile.png",'user
 
 //delete multiple keys
 setting::select('my_setting')->delete(['users.3.profile.pic','users.3.profile.name']);
+
+//multiple keys checking exists by has method
+if(Setting::select('my_setting')->has(['users.3.profile.pic','users.3.profile.name'])){
+    echo "The keys are exists!";
+}else{
+    echo "The keys do not exist!";
+}
+
 
 // it's very Easy
 ```
