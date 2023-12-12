@@ -13,7 +13,7 @@ if (!function_exists('setting')) {
      * @param bool $throw flag to disable 'NotFound' exceptions.
      * @return mixed|Setting Returns a Setting instance if no arguments are provided, otherwise returns the value of the specified key.
      */
-    function setting(string $settingName = '', mixed $key = '', mixed $default = '', bool $throw = true): mixed
+    function setting(string $settingName = '', mixed $key = [], mixed $default = null, bool $throw = true): mixed
     {
         $setting = app(Setting::class);
 

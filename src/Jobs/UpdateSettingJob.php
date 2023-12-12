@@ -29,7 +29,9 @@ class UpdateSettingJob implements ShouldQueue
     public function handle(SettingStore $store): void
     {
         $oldData = $store->getSetting($this->settingName) ?? [];
-        $store->set($this->settingName, $this->setByDotMulti($oldData, $this->keyValue));
+        $data = $oldData;
+
+        $store->set($this->settingName, $this->setByDotMulti($data, $this->keyValue));
 
         if ($this->cacheEnabled) {
             $store->cache()->clear($this->settingName);

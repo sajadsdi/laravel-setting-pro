@@ -18,7 +18,8 @@ trait DeleteCallbacksTrait
             $class->addToDelete($setting, [$key]);
 
             unset($class->sets[$setting][$key]);
-            if (!$class->sets[$setting]) {
+
+            if (isset($class->sets[$setting]) && !$class->sets[$setting]) {
                 $this->removeFromSet($setting);
             }
         };
