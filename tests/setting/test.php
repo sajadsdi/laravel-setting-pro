@@ -2,7 +2,7 @@
 
 return [
     'welcome' => 'welcome to Laravel Setting Pro',
-    'version' => '1.0.0',
+    'version' => '1.0.1',
     'users'   => [
         '1' => [
             'name'    => 'test user 1',
