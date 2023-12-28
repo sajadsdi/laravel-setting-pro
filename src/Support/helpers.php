@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Sajadsdi\LaravelSettingPro\Support\Setting;
 
 if (!function_exists('setting')) {
@@ -15,16 +14,14 @@ if (!function_exists('setting')) {
      */
     function setting(string $settingName = '', mixed $key = [], mixed $default = null, bool $throw = true): mixed
     {
-        $setting = app(Setting::class);
-
         if (!$settingName) {
-            return $setting;
+            return Setting::Obj();
         }
 
         if ($key) {
-            return $setting->select($settingName)->get($key, $default);
+            return Setting::Obj()->select($settingName)->get($key, $default);
         }
 
-        return $setting->select($settingName);
+        return Setting::Obj()->select($settingName);
     }
 }

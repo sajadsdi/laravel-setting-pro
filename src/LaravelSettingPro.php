@@ -32,9 +32,9 @@ class LaravelSettingPro
      *
      * @param SettingStore $store Instance of SettingStore for storing settings.
      */
-    public function __construct(SettingStore $store)
+    public function __construct(array $config, SettingStore $store)
     {
-        $this->config = config('_setting');
+        $this->config = $config;
         $this->store  = $store;
     }
 

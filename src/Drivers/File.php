@@ -15,10 +15,11 @@ class File implements StoreDriverInterface
     public function __construct(array $config)
     {
         $this->config         = $config;
-        $this->config['path'] = str_replace(['/', '\\'], self::DS, $this->config['path']);
+        $this->config['path'] = realpath(str_replace(['/', '\\'], self::DS, $this->config['path']));
     }
 
     /**
+     * Get setting file with key name.
      * @param string $key
      * @return mixed
      */
@@ -33,6 +34,7 @@ class File implements StoreDriverInterface
     }
 
     /**
+     * Update setting file with key name and data.
      * @param string $key
      * @param mixed $data
      * @return void
@@ -43,6 +45,7 @@ class File implements StoreDriverInterface
     }
 
     /**
+     * Delete setting file with key name.
      * @param string $key
      * @return void
      */

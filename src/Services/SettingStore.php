@@ -7,16 +7,16 @@ use Sajadsdi\LaravelSettingPro\Contracts\StoreDriverInterface;
 
 class SettingStore
 {
-    private array $drivers = [];
-    private array $config;
+    private array                $drivers = [];
+    private array                $config;
     private CacheDriverInterface $cache;
 
     /**
      * SettingStore constructor.
      */
-    public function __construct()
+    public function __construct(array $config)
     {
-        $this->config = config('_setting');
+        $this->config = $config;
 
         if ($this->cacheEnabled()) {
             $this->setCache(new $this->config['cache']['class']($this->config['cache']));

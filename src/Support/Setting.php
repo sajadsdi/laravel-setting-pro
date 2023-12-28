@@ -2,13 +2,16 @@
 
 namespace Sajadsdi\LaravelSettingPro\Support;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Sajadsdi\ArrayDotNotation\Exceptions\ArrayKeyNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingKeyNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotFoundException;
 use Sajadsdi\LaravelSettingPro\Exceptions\SettingNotSelectedException;
 use Sajadsdi\LaravelSettingPro\LaravelSettingPro;
+use Sajadsdi\LaravelSettingPro\Services\SettingStore;
 
+/**
+ * @method select(string $settingName)
+ */
 class Setting
 {
     private static self       $obj;
@@ -151,11 +154,15 @@ class Setting
      *
      * @return Setting
      */
-    private static function Obj(): Setting
+    public static function Obj(): Setting
     {
         if (!isset(self::$obj)) {
-            self::$obj = app(self::class);
+            //this added for resolve conflict with laravel bootstrap configuration
+            $config = require base_path('config') . DIRECTORY_SEPARATOR . "_setting.php";
+
+            new Setting(new LaravelSettingPro($config, new SettingStore($config)));
         }
+
         return self::$obj;
     }
 }
