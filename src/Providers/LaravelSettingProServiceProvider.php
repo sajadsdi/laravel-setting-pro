@@ -2,24 +2,26 @@
 
 namespace Sajadsdi\LaravelSettingPro\Providers;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Sajadsdi\LaravelSettingPro\Console\ClearCacheCommand;
 use Sajadsdi\LaravelSettingPro\Console\InstallCommand;
 use Sajadsdi\LaravelSettingPro\Console\PublishCommand;
 use Sajadsdi\LaravelSettingPro\Console\PublishMongoDBCommand;
-use Sajadsdi\LaravelSettingPro\LaravelSettingPro;
 use Sajadsdi\LaravelSettingPro\Services\SettingStore;
-use Sajadsdi\LaravelSettingPro\Support\Setting;
 
 class LaravelSettingProServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(SettingStore::class);
+        $this->app->singleton(SettingStore::class,function () {
+            return new SettingStore(config('_setting'));
+        });
 
-        $this->app->singleton(LaravelSettingPro::class);
+        //singleton pattern implemented in setting class for work in any laravel files before bootstrap!
 
-        $this->app->singleton(Setting::class);
+        //$this->app->singleton(LaravelSettingPro::class);
+
+        //$this->app->singleton(Setting::class);
     }
 
     public function boot(): void
@@ -47,7 +49,8 @@ class LaravelSettingProServiceProvider extends ServiceProvider
         $this->commands([
             PublishCommand::class,
             InstallCommand::class,
-            PublishMongoDBCommand::class
+            PublishMongoDBCommand::class,
+            ClearCacheCommand::class
         ]);
     }
 

@@ -2,7 +2,7 @@
 
 namespace Sajadsdi\LaravelSettingPro\Contracts;
 
-interface DatabaseModelInterface
+interface DatabaseDriverInterface
 {
     public function getSetting(string $key): mixed;
 

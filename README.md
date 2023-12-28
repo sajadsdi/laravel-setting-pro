@@ -17,13 +17,13 @@ The Laravel Setting Pro package simplifies application settings management in La
  
 - **Flexible Database**: Choose between `mysql` or `mongodb` or create own db connection for settings.
 
-- **Caching**: Improve performance with automatic caching of settings.
+- **Caching**: Improve performance with automatic caching of settings. You can choose between `file` or `redis` or create own cache driver.
 
-- **Queue Support**: Handle setting updates in the background, ensuring smooth user experiences.
+- **Queue Support**: Handle setting updates and deletes in the background, ensuring smooth user experiences.
 
 - **Event Triggers**: Respond to setting changes in real-time by leveraging Laravel events.
 
-- **Global Helper Function & Facade**: Access and manipulate settings anywhere in your app with a simple `setting` function or `Setting` facade.
+- **Global Helper Function & Facade**: Access and manipulate settings anywhere in your laravel app with a simple `setting` function or `Setting` facade (even in the config files).
 
 - **Artisan Commands for Ease of Use**: Publish configuration and migrations effortlessly with the `setting:publish`
   artisan command; complete installations, migrations, and initial tests using the `setting:install` command.
@@ -162,10 +162,11 @@ This package use `Dot Notation Array` package to getting keys and setting operat
 
 ## Caching
 
-You can set config to enable setting cache for optimal performance. To clear the settings cache, use:
+You can set config to enable setting cache, and you can choose cache driver for optimal performance.
+To clear the settings cache, use:
 
 ```bash
-php artisan cache:clear
+php artisan setting:clear-cache
 ```
 
 ## Configuration

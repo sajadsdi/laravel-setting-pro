@@ -1,7 +1,13 @@
 {
     "name": "sajadsdi/laravel-setting-pro",
-    "description": "Easy setting management for Laravel framework",
+    "description": "Easy settings management for laravel framework",
     "type": "laravel-package",
+    "keywords": [
+        "laravel",
+        "package",
+        "settings",
+        "configs"
+    ],
     "license": "MIT",
     "autoload": {
         "files": [
@@ -19,6 +25,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "ext-pdo": "*",
         "laravel/framework": "^9.0|^10.0",
         "sajadsdi/array-dot-notation": "^1.0"
     },
