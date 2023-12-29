@@ -92,13 +92,20 @@ class Setting
     /**
      * Set values of keys on selected setting.
      *
-     * @param array $keyValues
+     * @param mixed $key
+     * @param mixed $value
      * @return void
      * @throws SettingNotSelectedException
      */
-    public function set(array $keyValues): void
+    public function set(mixed $key, mixed $value = []): void
     {
-        $this->setting->set($this->getSelect(), $keyValues);
+        if ($key) {
+            if (is_string($key) && $value) {
+                $this->setting->set($this->getSelect(), [$key => $value]);
+            } elseif (is_array($key)) {
+                $this->setting->set($this->getSelect(), $key);
+            }
+        }
     }
 
     /**
